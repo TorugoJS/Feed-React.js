@@ -9,7 +9,7 @@ const Register = () => {
   return (
 
     <div className={styles.register}>
-      
+
       {/* Título da pagina de registrar */}
       <h1>Cadastra-se em nossa rede!</h1>
       <p>Compartilhe suas histórias e ganhe seguidores!</p>
@@ -58,4 +58,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Register;
