@@ -31,11 +31,20 @@ const Navbar = () => {
                     <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : '')}>Home</NavLink>
                 </li>
 
+                {/* Link para login */}
+                <li>
+                    <NavLink to="login" className={({ isActive }) => (isActive ? styles.active : '')}>Entrar</NavLink>
+                </li>
+
+                {/* Link para registrar */}
+                <li>
+                    <NavLink to="register" className={({ isActive }) => (isActive ? styles.active : '')}>Registrar</NavLink>
+                </li>
+
                 {/* Link para About */}
                 <li>
                     <NavLink to="about" className={({ isActive }) => (isActive ? styles.active : '')}>Sobre</NavLink>
                 </li>
-
             </ul>
 
         </nav>
