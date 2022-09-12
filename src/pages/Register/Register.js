@@ -3,6 +3,7 @@ import styles from './Register.module.css'
 
 // importando useState e useEffect.
 import { useState, useEffect } from 'react';
+import { useAuthentication } from '../../hooks/useAuthentication';
 
 const Register = () => {
 
@@ -14,8 +15,10 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("") // para confirmar a senha
   const [error, setError] = useState("") // para manipular o erros
 
+  const { createUser, error: authError, loading } = useAuthentication(); // importando hooks criados
+
   // reunir todos os dados e enviar no formulário.
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // para enviar o formulário sem fazer a recarregamento da página.
 
 
@@ -38,17 +41,28 @@ const Register = () => {
       setError("As senhas precisam ser iguais")
       return;
     }
+    // resposta await da criação do usuário
+    const res = await createUser(user)
 
     //imprimindo objeto com informações do usuário
-    console.log(user);
+    console.log(res);
   };
+
+  // vai ficar monitorando se o erro vai mudar
+  useEffect(() => {
+
+    if(authError) {
+      setError(authError);
+    }
+
+  }, [authError]);
 
 
 
 
 
   return (
-      //container com form
+    //container com form
     <div className={styles.register}>
 
       {/* Título da pagina de registrar */}
@@ -107,7 +121,12 @@ const Register = () => {
         </label>
 
         {/* Botão para enviar formulário. */}
-        <button className='btn'>Cadastrar</button>
+        {/* se estiver em loading, exiba o botão */}
+        {!loading && <button className='btn'>Cadastrar</button> }
+
+        {/* tambem exibirá o botão, só que com disabled */}
+        {loading && <button className='btn' disabled>Aguarde...</button> }
+    
 
 
         {/* se houve alguem erro no formulário exibirá o erro */}

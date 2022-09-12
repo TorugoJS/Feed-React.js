@@ -1,7 +1,10 @@
-// importando
+import { db } from "../firebase/config";
+
+
+// importando do firebase
 import {
     getAuth,
-    createUserMithEmailAndPassword,
+    createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     updateProfile,
     signOut
@@ -30,10 +33,83 @@ export const useAuthentication = () => {
 
     // criando um função para checar o state e reutilizar ela depois
     // se for true retorne
-    // será o clearUp do vazamento de memória
+    // será o cleanUp do vazamento de memória
     function checkIfIsCancelled() {
         if (cancelled) {
             return;
         }
+    }
+
+    //criando usuário 
+    // usuário indo para um banco de dados externo
+    const createUser = async (data) => {
+
+        //checando se está cancelado
+        checkIfIsCancelled()
+
+        // se tiver tudo certo, loading...
+        setLoading(true)
+
+        //limpando erro
+        setError(null)
+
+
+
+        // tratando erros
+        try {
+            // pegando usuário dos dados
+            const { user } = await createUserWithEmailAndPassword(
+                auth,
+                data.email,
+                data.password
+            )
+
+            // fazendp um update
+            await updateProfile(user, {
+                displayName: data.displayName
+            })
+
+            // setando loading pós envio
+            setLoading(false)
+
+            //retorne o usuário
+            return user;
+        }
+        catch (error) {
+
+            //imprimindo erro
+            console.log(error.message)
+            console.log(typeof error.message)
+
+            // manipulando erros para imprimir em pt-br
+            // checando com if e imprimindo erros baseados na condição
+            let systemErrorMessage;
+
+            if (error.message.includes("Password")) {
+                systemErrorMessage = "A senha precisa conter 6 dígitos!"
+            } else if(error.message.includes("email-already")) {
+                systemErrorMessage = "Email já cadastrado."
+            } else {
+                systemErrorMessage = "Ocorreu um erro, tente mais tarde";
+            }
+
+            setLoading(false)
+            setError(systemErrorMessage);
+        }
+
+        
+    };
+
+    // executando apenas uma vez ao sair da página
+    useEffect(() => {
+        return () => setCancelled(true)
+    }, []);
+
+    // retorno do que foi criado a cima
+    return {
+        auth,
+        createUser,
+        error,
+        loading,
     }
 };
