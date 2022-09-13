@@ -55,7 +55,7 @@ const Navbar = () => {
                     </>
                 )}
 
-                    {/* será exibido caso o usuário esteja autenticado, imprimirá na navbar. */}
+                {/* será exibido caso o usuário esteja autenticado, imprimirá na navbar. */}
                 {user && (
                     <>
                         {/* Link para login */}

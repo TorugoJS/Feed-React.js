@@ -66,13 +66,24 @@ function App() {
               {/* Rotas  */}
               {/* Element - destino da rota */}
               <Route path="/" element={<Home />} />  {/* Para navegar em Home */}
+
               <Route path="/about" element={<About />} /> {/* Para navegar em About */}
-              <Route path="/login" element={<Login />} />  {/* Para o usuário fazer o login */}
-              <Route path="/register" element={<Register />} /> {/* Para o usuário fazer o registro */}
-              <Route path="/post/create" element={<CreatePost />} /> {/* Para o usuário criar um post,
+
+              {/* condição para bloquear páginas, se não estiver logado vai para loguin. se tiver vai para home */}
+              <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />  {/* Para o usuário fazer o login */}
+
+              {/* se não estiver registrado vai para register, se tiver vai para home */}
+              <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} /> {/* Para o usuário fazer o registro */}
+
+
+              {/* SE ESTIVER AUTENTICADO SERÁ ACESSO A ESSAS PÁGINAS! */}
+
+              {/* se estiver registrado e logado vai para createpost */}
+              <Route path="/posts/create" element={user ? <CreatePost /> : <Navigate to="/" />} /> {/* Para o usuário criar um post,
                trabalhando com hierarquia de rotas */}
-               
-              <Route path="/dashboard" element={<Dashboard />} /> {/* Para o usuário navegar no dashboard */}
+
+              {/* encaminhando usuário para fazer autenticação */}
+              <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} /> {/* Para o usuário navegar no dashboard */}
 
 
             </Routes>
