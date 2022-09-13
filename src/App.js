@@ -22,6 +22,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import Dashboard from './pages/Dashboard/Dashboard';
+import CreatePost from './pages/CreatePost/CreatePost';
 
 
 function App() {
@@ -67,6 +69,10 @@ function App() {
               <Route path="/about" element={<About />} /> {/* Para navegar em About */}
               <Route path="/login" element={<Login />} />  {/* Para o usuário fazer o login */}
               <Route path="/register" element={<Register />} /> {/* Para o usuário fazer o registro */}
+              <Route path="/post/create" element={<CreatePost />} /> {/* Para o usuário criar um post,
+               trabalhando com hierarquia de rotas */}
+               
+              <Route path="/dashboard" element={<Dashboard />} /> {/* Para o usuário navegar no dashboard */}
 
 
             </Routes>

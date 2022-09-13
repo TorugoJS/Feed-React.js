@@ -1,12 +1,20 @@
 // CSS
 import styles from './Navbar.module.css'
 
+//importando contexto
+import { useAuthentication } from '../hooks/useAuthentication';
+
+import { useAuthValue } from '../context/AuthContext';
+
 
 //import NavLink para alterar urls
 import { NavLink } from "react-router-dom";
 
 
 const Navbar = () => {
+    //usando context em navbar
+    const { user } = useAuthValue();
+
 
     return (
 
@@ -31,15 +39,36 @@ const Navbar = () => {
                     <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : '')}>Home</NavLink>
                 </li>
 
-                {/* Link para login */}
-                <li>
-                    <NavLink to="login" className={({ isActive }) => (isActive ? styles.active : '')}>Entrar</NavLink>
-                </li>
 
-                {/* Link para registrar */}
-                <li>
-                    <NavLink to="register" className={({ isActive }) => (isActive ? styles.active : '')}>Registrar</NavLink>
-                </li>
+                {/* só será exibido quando o usuário estiver autenticado, baseado na condição abaixo.  */}
+                {!user && (
+                    <>
+                        {/* Link para login */}
+                        <li>
+                            <NavLink to="login" className={({ isActive }) => (isActive ? styles.active : '')}>Entrar</NavLink>
+                        </li>
+
+                        {/* Link para registrar */}
+                        <li>
+                            <NavLink to="register" className={({ isActive }) => (isActive ? styles.active : '')}>Registrar</NavLink>
+                        </li>
+                    </>
+                )}
+
+                    {/* será exibido caso o usuário esteja autenticado, imprimirá na navbar. */}
+                {user && (
+                    <>
+                        {/* Link para login */}
+                        <li>
+                            <NavLink to="/post/create" className={({ isActive }) => (isActive ? styles.active : '')}>Criar Post</NavLink>
+                        </li>
+
+                        {/* Link para registrar */}
+                        <li>
+                            <NavLink to="/dashboard" className={({ isActive }) => (isActive ? styles.active : '')}>Dashboard</NavLink>
+                        </li>
+                    </>
+                )}
 
                 {/* Link para About */}
                 <li>
