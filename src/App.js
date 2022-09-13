@@ -1,6 +1,13 @@
 // css
 import './App.css';
 
+// mapear se a autenticaçaõ foi feita com sucesso.
+import { onAuthStateChanged } from 'firebase/auth';
+
+// hooks
+import { useState, useEffect } from 'react';
+import { useAuthentication } from './hooks/useAuthentication';
+
 
 // importando rotas
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
@@ -18,10 +25,32 @@ import Register from './pages/Register/Register';
 
 
 function App() {
+
+  const [user, setUser] = useState(undefined);
+  const { auth } = useAuthentication();
+
+  // comparando usuário com undefined
+  const loadingUser = user === undefined
+
+  useEffect(() => {
+
+    onAuthStateChanged(auth, (user) => {
+      setUser(user)
+    })
+
+  }, [auth])
+
+  if (loadingUser) {
+    return <p>Carregando...</p>
+  }
+
+
   return (
     <div className="App">
 
-      <AuthProvider>
+      {/* passando usuário para Provider, podendo acessar em varios locais e fazer loguin */}
+      <AuthProvider value={{ user }}>
+
         {/* Configurando rotas */}
         <BrowserRouter>
 
@@ -48,6 +77,7 @@ function App() {
           <Footer />
 
         </BrowserRouter>
+
       </AuthProvider>
 
 
