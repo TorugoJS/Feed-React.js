@@ -85,7 +85,7 @@ function App() {
               {/* encaminhando usuário para fazer autenticação */}
               <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} /> {/* Para o usuário navegar no dashboard */}
 
-
+               
             </Routes>
 
           </div>

@@ -40,7 +40,8 @@ export const useAuthentication = () => {
         }
     }
 
-    //criando usuário 
+    // register
+    // criando usuário 
     // usuário indo para um banco de dados externo
     const createUser = async (data) => {
 
@@ -87,18 +88,27 @@ export const useAuthentication = () => {
 
             if (error.message.includes("Password")) {
                 systemErrorMessage = "A senha precisa conter 6 dígitos!"
-            } else if(error.message.includes("email-already")) {
+            } else if (error.message.includes("email-already")) {
                 systemErrorMessage = "Email já cadastrado."
             } else {
                 systemErrorMessage = "Ocorreu um erro, tente mais tarde";
             }
 
-            setLoading(false)
+            setLoading(false);
             setError(systemErrorMessage);
         }
 
-        
+
     };
+
+    //logout - sign out
+    // deslogando
+    const logout = () => {
+
+        checkIfIsCancelled()
+
+        signOut(auth)
+    }
 
     // executando apenas uma vez ao sair da página
     useEffect(() => {
@@ -111,5 +121,6 @@ export const useAuthentication = () => {
         createUser,
         error,
         loading,
+        logout
     }
 };
