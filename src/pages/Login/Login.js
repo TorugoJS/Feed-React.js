@@ -11,7 +11,7 @@ const Login = () => {
  const [password, setPassword] = useState("") // para manipular a senha
  const [error, setError] = useState("") // para manipular o erros
 
- const { createUser, error: authError, loading } = useAuthentication(); // importando hooks criados
+ const { login, error: authError, loading } = useAuthentication(); // importando hooks criados
 
  // reunir todos os dados e enviar no formulário.
  const handleSubmit = async (e) => {
@@ -29,7 +29,7 @@ const Login = () => {
    };
    
    // resposta await da criação do usuário
-   const res = await createUser(user)
+   const res = await login(user)
 
    //imprimindo objeto com informações do usuário
    console.log(res);
