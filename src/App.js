@@ -79,7 +79,7 @@ function App() {
               {/* SE ESTIVER AUTENTICADO SERÁ ACESSO A ESSAS PÁGINAS! */}
 
               {/* se estiver registrado e logado vai para createpost */}
-              <Route path="/posts/create" element={user ? <CreatePost /> : <Navigate to="/" />} /> {/* Para o usuário criar um post,
+              <Route path="/post/create" element={user ? <CreatePost /> : <Navigate to="/" />} /> {/* Para o usuário criar um post,
                trabalhando com hierarquia de rotas */}
 
               {/* encaminhando usuário para fazer autenticação */}
