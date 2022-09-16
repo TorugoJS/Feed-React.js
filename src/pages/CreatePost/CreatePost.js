@@ -1,8 +1,9 @@
 import styles from './CreatePost.module.css'
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useAuthValue } from '../../context/AuthContext';
+import { useInsertDocument } from '../../hooks/useInsertDocument';
 
 const CreatePost = () => {
 
@@ -13,11 +14,34 @@ const CreatePost = () => {
   const [tags, setTags] = useState([]);
   const [formError, setFormError] = useState("");
 
+  const { user } = useAuthValue();
+
+  const { insertDocument, response } = useInsertDocument("posts")
+
 
   //função de envio do formulário
   const handleSubmit = (e) => {
     e.preventDefault()
-  }
+    setFormError("")// zerando erros
+
+    //validar URL da imagem
+
+    //arrays de tags
+
+    //checando valores
+
+    insertDocument({
+      title,
+      image,
+      body,
+      tags,
+      uid: user.uid,
+      createdBy: user.displayName,
+    });
+
+    // redirect home page
+
+  };
 
 
   return (
@@ -71,19 +95,22 @@ const CreatePost = () => {
         </label>
 
 
-          <button className='btn'>Cadastrar meu post</button>
-         {/* Botão para enviar formulário. */}
+        {/* <button className='btn'>Cadastrar meu post</button> */}
+        {/* Botão para enviar formulário. */}
         {/* se estiver em loading, exiba o botão */}
-        {/* {!loading && <button className='btn'>Cadastrar</button> } */}
+        {!response.loading && <button className='btn'>Cadastrar</button>}
 
         {/* tambem exibirá o botão, só que com disabled */}
-        {/* {loading && <button className='btn' disabled>Aguarde...</button> } */}
-    
+        {response.loading && (
+          <button className='btn' disabled>
+            Aguarde...</button>
+            )}
+
 
 
         {/* se houve alguem erro no formulário exibirá o erro */}
         {/* condição que será executada sendo true */}
-        {/* {error && <p className="error">{error}</p>} */}
+        {response.error && <p className="error">{response.error}</p>}
 
 
       </form>
