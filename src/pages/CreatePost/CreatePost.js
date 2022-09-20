@@ -1,7 +1,7 @@
 import styles from './CreatePost.module.css'
 
 import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuthValue } from '../../context/AuthContext';
 import { useInsertDocument } from '../../hooks/useInsertDocument';
 
@@ -17,6 +17,8 @@ const CreatePost = () => {
   const { user } = useAuthValue();
 
   const { insertDocument, response } = useInsertDocument("posts")
+
+  const navigate = useNavigate();
 
 
   //função de envio do formulário
@@ -60,6 +62,8 @@ const CreatePost = () => {
     });
 
     // redirect home page
+    // após o envio da criação de post, vai diretamente para página home
+    navigate("/")
 
   };
 
