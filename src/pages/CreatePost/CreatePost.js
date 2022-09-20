@@ -24,17 +24,37 @@ const CreatePost = () => {
     e.preventDefault()
     setFormError("")// zerando erros
 
-    //validar URL da imagem
 
-    //arrays de tags
+    // validando se o usuario realmente colocou uma URL
+    //validar URL da imagem
+    try {
+      new URL(image);
+    } catch (error) {
+      setFormError("A imagem precisa ser uma URL.")
+    }
+
+    // criando array de tags baseado nas strings
+    // tirando espaços em branco com trim
+    // tudo minusculo com lowercase
+    const tagsArray = tags.split("-").map((tag) =>tag.trim().toLowerCase());
+
+
 
     //checando valores
+    //validando se valores vinheram
+    if(!title || !image || !tags || !body){
+      setFormError("Preencha todos os campos");
+    }
+
+
+    // se tiver um formError vai retornar para não prosseguir.
+    if (formError) return;
 
     insertDocument({
       title,
       image,
       body,
-      tags,
+      tagsArray,
       uid: user.uid,
       createdBy: user.displayName,
     });
@@ -104,13 +124,17 @@ const CreatePost = () => {
         {response.loading && (
           <button className='btn' disabled>
             Aguarde...</button>
-            )}
+        )}
 
 
 
         {/* se houve alguem erro no formulário exibirá o erro */}
         {/* condição que será executada sendo true */}
         {response.error && <p className="error">{response.error}</p>}
+
+        {/* Verificando formError */}
+        {formError && <p className="error">{formError}</p>}
+
 
 
       </form>
