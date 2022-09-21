@@ -34,7 +34,7 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
                 //busca
                 //dashboard
 
-                q = await query(collectionRef, orderBy("createdAt", "desc"));
+                q = await query(collectionRef, orderBy("createAt", "desc"));
 
                 await onSnapshot(q, (querySnapshot) => {
                     setDocuments(
@@ -63,6 +63,6 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
         return () => setCancelled(true)
     }, []);
 
-    return documents, loading, error;
+    return {documents, loading, error};
 
 };
