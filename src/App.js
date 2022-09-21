@@ -24,6 +24,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Dashboard from './pages/Dashboard/Dashboard';
 import CreatePost from './pages/CreatePost/CreatePost';
+import Search from './pages/Search/Search';
 
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
               <Route path="/" element={<Home />} />  {/* Para navegar em Home */}
 
               <Route path="/about" element={<About />} /> {/* Para navegar em About */}
+              <Route path="/search" element={<Search />} /> {/* Para navegar em search*/}
 
               {/* condição para bloquear páginas, se não estiver logado vai para loguin. se tiver vai para home */}
               <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />  {/* Para o usuário fazer o login */}

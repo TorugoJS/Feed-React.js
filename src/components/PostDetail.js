@@ -2,7 +2,7 @@ import styles from './PostDetail.module.css';
 
 import { Link } from 'react-router-dom'
 
-const PostDetail = ({post}) => {
+const PostDetail = ({ post }) => {
     return (
 
         <div className={styles.post_detail}>

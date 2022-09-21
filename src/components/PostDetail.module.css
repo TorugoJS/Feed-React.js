@@ -1,4 +1,4 @@
-.post_detail{
+.post_detail {
     margin-bottom: 2em;
 }
 
@@ -6,7 +6,7 @@
     max-width: 600px;
 }
 
-.post_detail h2{
+.post_detail h2 {
     margin-bottom: 0.4em;
 }
 
@@ -15,15 +15,15 @@
     display: flex;
 }
 
-.tags p{
+.tags p {
     margin-right: .5em;
 }
 
-.tags span{
-font-weight: bold;
+.tags span {
+    font-weight: bold;
 }
 
-.createdby{
+.createdby {
     font-style: italic;
     color: #444;
     font-size: .8em;

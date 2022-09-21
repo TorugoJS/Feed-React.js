@@ -2,7 +2,7 @@
 import styles from "./Home.module.css";
 
 // hooks
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 import { useState } from "react";
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 
@@ -14,13 +14,20 @@ const Home = () => {
   //fazendo a busca da barra de pesquisa
   const [query, setQuery] = useState("");
 
-
   const { documents: posts, loading } = useFetchDocuments("posts");
+
+  // usando navigate
+  const navigate = useNavigate();
 
   // função de envio
   // parando o carregamento da página com preventDefault
   const handleSubmit = (e) => {
     e.preventDefault();
+
+
+    if (query) {
+      return navigate(`/search?q=${query}`)
+    }
   }
 
 
