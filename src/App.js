@@ -25,6 +25,7 @@ import Register from './pages/Register/Register';
 import Dashboard from './pages/Dashboard/Dashboard';
 import CreatePost from './pages/CreatePost/CreatePost';
 import Search from './pages/Search/Search';
+import Post from './pages/Post/Post';
 
 
 function App() {
@@ -70,6 +71,8 @@ function App() {
 
               <Route path="/about" element={<About />} /> {/* Para navegar em About */}
               <Route path="/search" element={<Search />} /> {/* Para navegar em search*/}
+
+              <Route path="/posts/:id" element={<Post />} /> {/* Para navegar em post*/}
 
               {/* condição para bloquear páginas, se não estiver logado vai para loguin. se tiver vai para home */}
               <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />  {/* Para o usuário fazer o login */}
