@@ -42,7 +42,7 @@ export const useDeleteDocument = (docCollection) => {
         checkCancelBeforeDispatch({ type: "LOADING" });
 
         try {
-            const deleteDocument = await deleteDoc(doc(docCollection, id))
+            const deleteDocument = await deleteDoc(doc(db,docCollection, id))
 
             checkCancelBeforeDispatch({
                 type: "INSERTED_DOC",
