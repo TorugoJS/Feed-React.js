@@ -1,5 +1,3 @@
-import { db } from "../firebase/config";
-
 
 // importando do firebase
 import {
