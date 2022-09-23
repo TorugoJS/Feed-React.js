@@ -1,17 +1,17 @@
 # Rede social desenvolvida com React.Js!
 
-# (Em construção 🚧)
+# (Em construção 🚧 Responsividade/Deploy) 🚧
 
 ### Nesse projeto eu utilizei:
 
 
-✔ Sistema de CRUD <br>
-✔ Cadastro de usuário, login e logout. <br>
-✔ Context API. <br>
-✔ React-Router. <br> 
-✔ Estados de erros e de loading. <br>
-✔ Validação e Autenticação. <br>
-✔ Back-end utilizando Firebase. <br>
+### ✔ Sistema de CRUD <br>
+### ✔ Cadastro de usuário, login e logout. <br>
+### ✔ Context API. <br>
+### ✔ React-Router. <br> 
+### ✔ Estados de erros e de loading. <br>
+### ✔ Validação e Autenticação. <br>
+### ✔ Back-end utilizando Firebase. <br>
 
 <hr> 
 
