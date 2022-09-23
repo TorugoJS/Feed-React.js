@@ -48,11 +48,11 @@ const Dashboard = () => {
 
             <div>
               {/* Link dinamico */}
-              <Link to={`/posts/${post.id}`} className="btn btn-outline">Ver</Link>
+              <Link to={`/post/${post.id}`} className="btn btn-outline">Ver</Link>
 
 
               {/* Botão para editar post, seguindo id */}
-              <Link to={`/posts/edit${post.id}`} className="btn btn-outline">
+              <Link to={`/post/edit${post.id}`} className="btn btn-outline">
                 Editar
               </Link>
 

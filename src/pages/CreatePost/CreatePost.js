@@ -38,7 +38,7 @@ const CreatePost = () => {
     // criando array de tags baseado nas strings
     // tirando espaços em branco com trim
     // tudo minusculo com lowercase
-    const tagsArray = tags.split("-").map((tag) =>tag.trim().toLowerCase());
+    const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
 
 
 

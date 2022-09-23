@@ -26,6 +26,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import CreatePost from './pages/CreatePost/CreatePost';
 import Search from './pages/Search/Search';
 import Post from './pages/Post/Post';
+import EditPost from './pages/EditPost/EditPost';
 
 
 function App() {
@@ -82,6 +83,9 @@ function App() {
 
 
               {/* SE ESTIVER AUTENTICADO SERÁ ACESSO A ESSAS PÁGINAS! */}
+
+              {/* se estiver registrado e logado vai para editpost */}
+              <Route path="/post/edit:id" element={user ? <EditPost/> : <Navigate to="/aa" />} /> 
 
               {/* se estiver registrado e logado vai para createpost */}
               <Route path="/post/create" element={user ? <CreatePost /> : <Navigate to="/" />} /> {/* Para o usuário criar um post,
