@@ -1,6 +1,6 @@
 # Rede social desenvolvida com React.Js!
 
-# (Em construção 🚧 Responsividade/Deploy) 🚧
+# (Em construção 🚧 Responsividade/Deploy) 🚧!
 
 ### Nesse projeto eu utilizei:
 
